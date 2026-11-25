@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>القلمينا بين الماضي والحاضر | أ. خالد عبدالمبدى ربيع</title>
+  <meta name="description" content="اقرأ وحمّل كتاب القلمينا بين الماضي والحاضر للأستاذ خالد عبدالمبدى ربيع بصيغة PDF مجاناً وبرابط مباشر." />
+
+  <!-- وسوم المعاينة لمشاركة الرابط على فيسبوك وواتساب -->
+  <meta property="og:type" content="book" />
+  <meta property="og:locale" content="ar_EG" />
+  <meta property="og:title" content="كتاب القلمينا بين الماضي والحاضر — أ. خالد عبدالمبدى ربيع" />
+  <meta property="og:description" content="رحلة توثيقية وتاريخية بين عبق الماضي وملامح الحاضر. تصفح الكتاب مباشرة أو قم بتحميله بصيغة PDF مجاناً." />
+  <!-- اختياري: لو رفعت صورة غلاف باسم cover.jpg بجانب الملف، شيل علامات التعليق من السطر التالي وحط رابط موقعك -->
+  <!-- <meta property="og:image" content="https://YOUR-USERNAME.github.io/YOUR-REPO/cover.jpg" /> -->
+
+  <!-- خطوط عربية أنيقة من Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-paper: #FAF7F2;
+      --bg-card: #FFFFFF;
+      --primary: #1A3A32;
+      --primary-hover: #122923;
+      --accent: #B88B4A;
+      --accent-light: #F3EAD8;
+      --text-main: #1F1E1B;
+      --text-muted: #5C5852;
+      --border-subtle: #E8E0D5;
+      --shadow-soft: 0 18px 45px rgba(26, 58, 50, 0.08);
+      --shadow-book: -18px 22px 40px rgba(20, 35, 30, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Tajawal', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-paper);
+      background-image: radial-gradient(rgba(184, 139, 74, 0.08) 1px, transparent 1px);
+      background-size: 28px 28px;
+      color: var(--text-main);
+      line-height: 1.8;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* الشريط العلوي */
+    header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(250, 247, 242, 0.85);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .nav-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-family: 'Amiri', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .nav-badge {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--accent-light);
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(184, 139, 74, 0.28);
+    }
+
+    /* القسم الرئيسي */
+    main {
+      flex: 1;
+      max-width: 1080px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 56px;
+      align-items: center;
+      margin-bottom: 64px;
+    }
+
+    .category-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.92rem;
+      letter-spacing: 0.3px;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-family: 'Amiri', serif;
+      font-size: clamp(2.3rem, 4.5vw, 3.5rem);
+      line-height: 1.25;
+      color: var(--primary);
+      margin-bottom: 14px;
+    }
+
+    .author-line {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .author-line strong {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .description {
+      font-size: 1.08rem;
+      color: var(--text-muted);
+      margin-bottom: 32px;
+      max-width: 560px;
+    }
+
+    /* الأزرار الرئيسية */
+    .cta-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 28px;
+      border-radius: 12px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.22s ease;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 10px 25px rgba(26, 58, 50, 0.22);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(26, 58, 50, 0.28);
+    }
+
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .btn-secondary:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* شريط المعلومات السريعة */
+    .meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .meta-pill svg {
+      color: var(--accent);
+    }
+
+    /* مجسم الغلاف ثلاثي الأبعاد */
+    .book-showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1200px;
+    }
+
+    .book-3d {
+      position: relative;
+      width: 295px;
+      height: 430px;
+      border-radius: 4px 14px 14px 4px;
+      background: linear-gradient(145deg, #1E443B 0%, #132C26 60%, #0D1F1B 100%);
+      box-shadow: var(--shadow-book);
+      transform: rotateY(14deg) rotateX(2deg);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #FAF7F2;
+      overflow: hidden;
+    }
+
+    .book-3d:hover {
+      transform: rotateY(4deg) rotateX(0deg) translateY(-6px);
+    }
+
+    /* تأثير كعب الكتاب */
+    .book-3d::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 22px;
+      height: 100%;
+      background: linear-gradient(to left, rgba(255,255,255,0.16), rgba(0,0,0,0.28) 65%, transparent);
+      z-index: 2;
+    }
+
+    /* الإطار الذهبي الداخلي للغلاف */
+    .book-frame {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      border: 1.5px solid rgba(184, 139, 74, 0.65);
+      border-radius: 6px;
+      padding: 26px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      background: radial-gradient(circle at top center, rgba(184, 139, 74, 0.14), transparent 65%);
+    }
+
+    .book-ornament {
+      font-size: 0.78rem;
+      letter-spacing: 2px;
+      color: #DFBD86;
+      text-transform: uppercase;
+      border-bottom: 1px solid rgba(223, 189, 134, 0.35);
+      padding-bottom: 12px;
+    }
+
+    .book-cover-title {
+      font-family: 'Amiri', serif;
+      font-size: 2.15rem;
+      line-height: 1.38;
+      font-weight: 700;
+      color: #FFFDF9;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+    }
+
+    .book-cover-sub {
+      font-family: 'Amiri', serif;
+      font-size: 1.15rem;
+      color: #E3C48E;
+      margin-top: 8px;
+      display: block;
+    }
+
+    .book-cover-author {
+      border-top: 1px solid rgba(223, 189, 134, 0.35);
+      padding-top: 14px;
+      font-size: 0.95rem;
+      color: #F3EAD8;
+    }
+
+    .book-cover-author span {
+      display: block;
+      font-size: 0.78rem;
+      color: #DFBD86;
+      margin-bottom: 2px;
+    }
+
+    /* بطاقات التفاصيل والمشاركة */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 28px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .card h2 {
+      font-family: 'Amiri', serif;
+      font-size: 1.55rem;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    /* شريط المشاركة */
+    .share-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 24px 28px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .share-text strong {
+      display: block;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .share-text span {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-family: 'Tajawal', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-paper);
+      color: var(--text-main);
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+
+    .share-btn:hover {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .share-btn.fb { color: #1877F2; }
+    .share-btn.wa { color: #128C7E; }
+
+    /* نافذة القراءة المدمجة (Modal) */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 25, 22, 0.82);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: var(--bg-card);
+      width: 100%;
+      max-width: 1000px;
+      height: 88vh;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    .modal-header {
+      padding: 14px 20px;
+      background: var(--primary);
+      color: #FFFFFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .modal-title {
+      font-family: 'Amiri', serif;
+      font-size: 1.2rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .modal-link {
+      color: #E3C48E;
+      font-size: 0.88rem;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 6px 12px;
+      border: 1px solid rgba(227, 196, 142, 0.4);
+      border-radius: 8px;
+    }
+
+    .modal-close {
+      background: rgba(255, 255, 255, 0.14);
+      border: none;
+      color: #FFFFFF;
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      font-size: 1.25rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .modal-body {
+      flex: 1;
+      position: relative;
+      background: #2C2C2C;
+    }
+
+    .modal-body iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* إشعار النسخ */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(90px);
+      background: var(--primary);
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      z-index: 200;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* التذييل */
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    /* التجاوب مع الموبايل */
+    @media (max-width: 860px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .book-showcase {
+        order: -1;
+      }
+
+      .book-3d {
+        width: 245px;
+        height: 360px;
+        transform: rotateY(8deg);
+      }
+
+      .book-cover-title {
+        font-size: 1.8rem;
+      }
+
+      .author-line,
+      .cta-group,
+      .meta-pills {
+        justify-content: center;
+      }
+
+      .description {
+        margin-inline: auto;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .share-box {
+        justify-content: center;
+        text-align: center;
+      }
+
+      .share-buttons {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        المكتبة الرقمية
+      </div>
+      <div class="nav-badge">نسخة PDF مجانية</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="category-tag">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          إصدار تاريخي وتوثيقي
+        </div>
+
+        <h1>القلمينا بين الماضي والحاضر</h1>
+
+        <div class="author-line">
+          تأليف: <strong>أ. خالد عبدالمبدى ربيع</strong>
+        </div>
+
+        <!-- يمكنك تعديل هذا الوصف بما يناسب محتوى الكتاب بالضبط -->
+        <p class="description">
+          عمل توثيقي يسلّط الضوء على تاريخ «القلمينا» وتحوّلاتها عبر الزمن، جامعاً بين أصالة الماضي وذاكرة المكان وملامح الحاضر بأسلوب شيّق ومتاح للقراءة والتحميل المباشر.
+        </p>
+
+        <div class="cta-group">
+          <a id="downloadBtn" href="#" class="btn btn-primary" download>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            تحميل الكتاب (PDF)
+          </a>
+
+          <button id="readOnlineBtn" type="button" class="btn btn-secondary">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+            قراءة الكتاب أونلاين
+          </button>
+        </div>
+
+        <div class="meta-pills">
+          <div class="meta-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+            </svg>
+            صيغة PDF عالية الجودة
+          </div>
+          <div class="meta-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            تحميل فوري ومباشر
+          </div>
+          <div class="meta-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+              <line x1="12" y1="18" x2="12.01" y2="18"></line>
+            </svg>
+            متوافق مع الهاتف والحاسوب
+          </div>
+        </div>
+      </div>
+
+      <!-- مجسم الغلاف -->
+      <div class="book-showcase">
+        <div class="book-3d" aria-label="غلاف كتاب القلمينا بين الماضي والحاضر">
+          <div class="book-frame">
+            <div class="book-ornament">إصدار خاص</div>
+            <div>
+              <div class="book-cover-title">القلمينا</div>
+              <span class="book-cover-sub">بين الماضي والحاضر</span>
+            </div>
+            <div class="book-cover-author">
+              <span>تأليف</span>
+              أ. خالد عبدالمبدى ربيع
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- بطاقات معلومات إضافية -->
+    <section class="info-grid">
+      <div class="card">
+        <h2>عن الكتاب</h2>
+        <p>
+          يأخذك هذا الكتاب في جولة معرفية وتاريخية لتوثيق سيرة «القلمينا»، متتبعاً جذورها وتاريخها وتطورها وصولاً إلى صورتها المعاصرة، ليكون مرجعاً قيّماً لكل مهتم بالتاريخ المحلي والتراث.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>سهولة القراءة والتحميل</h2>
+        <p>
+          يمكنك تصفح الكتاب مباشرة من داخل الصفحة دون الحاجة لأي برامج إضافية عبر زر «قراءة الكتاب أونلاين»، أو حفظ نسخة كاملة على هاتفك لقراءتها لاحقاً بدون إنترنت.
+        </p>
+      </div>
+    </section>
+
+    <!-- قسم مشاركة الصفحة -->
+    <section class="share-box">
+      <div class="share-text">
+        <strong>أعجبك الكتاب؟ شاركه مع غيرك</strong>
+        <span>ساهم في نشر المعرفة ومشاركة الكتاب مع أصدقائك ومهتمي القراءة.</span>
+      </div>
+      <div class="share-buttons">
+        <a id="shareFb" class="share-btn fb" target="_blank" rel="noopener noreferrer">
+          مشاركة على فيسبوك
+        </a>
+        <a id="shareWa" class="share-btn wa" target="_blank" rel="noopener noreferrer">
+          مشاركة على واتساب
+        </a>
+        <button id="copyLinkBtn" type="button" class="share-btn">
+          نسخ الرابط
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    كتاب «القلمينا بين الماضي والحاضر» — تأليف أ. خالد عبدالمبدى ربيع
+  </footer>
+
+  <!-- نافذة القراءة المدمجة -->
+  <div id="readerModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalBookTitle">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div id="modalBookTitle" class="modal-title">القلمينا بين الماضي والحاضر</div>
+        <div class="modal-actions">
+          <a id="directFallbackLink" href="#" target="_blank" rel="noopener noreferrer" class="modal-link">
+            فتح الملف مباشرة
+          </a>
+          <button id="closeModalBtn" type="button" class="modal-close" aria-label="إغلاق">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body">
+        <iframe id="pdfFrame" title="عارض كتاب القلمينا بين الماضي والحاضر"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- إشعار نسخ الرابط -->
+  <div id="toast" class="toast">تم نسخ رابط الصفحة بنجاح</div>
+
+  <script>
+    // رابط الكتاب المباشر على Hugging Face
+    const BOOK_URL = "https://huggingface.co/datasets/M-hv1/Titan-Library-Arabic/resolve/main/%D8%A7%D9%84%D9%82%D9%84%D9%85%D9%8A%D9%86%D8%A7%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D8%A7%D8%B6%D9%89%20%D9%88%D8%A7%D9%84%D8%AD%D8%A7%D8%B6%D8%B1%20%D8%A3-%20%D8%AE%D8%A7%D9%84%D8%AF%20%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%85%D8%A8%D8%AF%D9%89%20%D8%B1%D8%A8%D9%8A%D8%B9_261125_171043.pdf";
+
+    // ربط أزرار التحميل والقراءة
+    const downloadBtn = document.getElementById("downloadBtn");
+    const directFallbackLink = document.getElementById("directFallbackLink");
+    const readOnlineBtn = document.getElementById("readOnlineBtn");
+    const readerModal = document.getElementById("readerModal");
+    const closeModalBtn = document.getElementById("closeModalBtn");
+    const pdfFrame = document.getElementById("pdfFrame");
+
+    downloadBtn.href = `${BOOK_URL}?download=true`;
+    directFallbackLink.href = BOOK_URL;
+
+    // تشغيل عارض القراءة فقط عند الضغط لتوفير البيانات وتسريع فتح الصفحة
+    let viewerLoaded = false;
+    readOnlineBtn.addEventListener("click", () => {
+      if (!viewerLoaded) {
+        pdfFrame.src = `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(BOOK_URL)}`;
+        viewerLoaded = true;
+      }
+      readerModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    });
+
+    function closeReader() {
+      readerModal.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    closeModalBtn.addEventListener("click", closeReader);
+    readerModal.addEventListener("click", (e) => {
+      if (e.target === readerModal) closeReader();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && readerModal.classList.contains("active")) closeReader();
+    });
+
+    // إعداد أزرار المشاركة بالرابط الفعلي للصفحة بعد رفعها
+    const currentUrl = encodeURIComponent(window.location.href);
+    const shareText = encodeURIComponent("اقرأ وحمّل كتاب «القلمينا بين الماضي والحاضر» للأستاذ خالد عبدالمبدى ربيع مجاناً:");
+
+    document.getElementById("shareFb").href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+    document.getElementById("shareWa").href = `https://wa.me/?text=${shareText}%20${currentUrl}`;
+
+    // نسخ الرابط مع إشعار
+    const toast = document.getElementById("toast");
+    document.getElementById("copyLinkBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(window.location.href);
+      } catch {
+        const tempInput = document.createElement("input");
+        tempInput.value = window.location.href;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+      }
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 2500);
+    });
+  </script>
+</body>
+</html>
