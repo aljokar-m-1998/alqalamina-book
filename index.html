@@ -352,108 +352,49 @@
       position: relative;
       z-index: 2;
       width: 295px;
-      height: 432px;
-      border-radius: 3px 14px 14px 3px;
-      background: linear-gradient(145deg, #1E473D 0%, #132F28 58%, #0B1D19 100%);
+      height: 420px;
+      border-radius: 3px 12px 12px 3px;
+      background: #EFE9DC;
       box-shadow: var(--shadow-book);
-      padding: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      color: #FAF7F2;
       overflow: hidden;
     }
 
-    /* كعب الكتاب العربي على اليمين */
+    .book-cover-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* كعب الكتاب العربي على اليمين مع حزّ تجليد واقعي */
     .book-3d::before {
       content: "";
       position: absolute;
       top: 0;
       right: 0;
-      width: 24px;
+      width: 20px;
       height: 100%;
-      background: linear-gradient(to left, rgba(255,255,255,0.18), rgba(0,0,0,0.34) 65%, transparent);
+      background: linear-gradient(
+        to left,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(0, 0, 0, 0.14) 55%,
+        rgba(0, 0, 0, 0.22) 65%,
+        rgba(255, 255, 255, 0.08) 76%,
+        transparent 100%
+      );
       z-index: 3;
       pointer-events: none;
     }
 
-    /* لمعة إضاءة ناعمة */
+    /* لمعة إضاءة ناعمة على الغلاف الورقي */
     .book-3d::after {
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(125deg, rgba(255, 255, 255, 0.12) 0%, transparent 45%, rgba(0, 0, 0, 0.22) 100%);
+      background: linear-gradient(125deg, rgba(255, 255, 255, 0.14) 0%, transparent 45%, rgba(0, 0, 0, 0.1) 100%);
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
       z-index: 2;
       pointer-events: none;
-    }
-
-    .book-frame {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      border: 1.5px solid rgba(215, 173, 110, 0.7);
-      border-radius: 6px;
-      padding: 24px 18px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      text-align: center;
-      background: radial-gradient(circle at 50% 25%, rgba(215, 173, 110, 0.18), transparent 65%);
-    }
-
-    .book-frame::before {
-      content: "";
-      position: absolute;
-      inset: 5px;
-      border: 1px solid rgba(215, 173, 110, 0.28);
-      border-radius: 3px;
-      pointer-events: none;
-    }
-
-    .book-ornament {
-      font-size: 0.78rem;
-      letter-spacing: 1.5px;
-      color: #E6C792;
-      border-bottom: 1px solid rgba(230, 199, 146, 0.35);
-      padding-bottom: 11px;
-    }
-
-    .book-cover-title {
-      font-family: 'Amiri', serif;
-      font-size: 2.3rem;
-      line-height: 1.3;
-      font-weight: 700;
-      color: #FFFDF8;
-      text-shadow: 0 3px 14px rgba(0, 0, 0, 0.4);
-    }
-
-    .book-cover-sub {
-      font-family: 'Amiri', serif;
-      font-size: 1.2rem;
-      color: #E6C792;
-      margin-top: 8px;
-      display: block;
-    }
-
-    .book-cover-divider {
-      width: 48px;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, #E6C792, transparent);
-      margin: 14px auto 0;
-    }
-
-    .book-cover-author {
-      border-top: 1px solid rgba(230, 199, 146, 0.35);
-      padding-top: 13px;
-      font-size: 0.96rem;
-      color: #F4EBDB;
-    }
-
-    .book-cover-author span {
-      display: block;
-      font-size: 0.76rem;
-      color: #E6C792;
-      margin-bottom: 2px;
     }
 
     /* فاصل زخرفي */
@@ -958,11 +899,7 @@
 
       .book-3d {
         width: 240px;
-        height: 354px;
-      }
-
-      .book-cover-title {
-        font-size: 1.9rem;
+        height: 342px;
       }
 
       .author-line,
@@ -1125,23 +1062,18 @@
         </div>
       </div>
 
-      <!-- مجسم الغلاف ثلاثي الأبعاد -->
+      <!-- مجسم الغلاف ثلاثي الأبعاد بالغلاف الأصلي للكتاب -->
       <div class="book-showcase">
         <div class="book-wrapper" id="bookCoverTrigger" title="اضغط لقراءة الكتاب أونلاين">
           <div class="book-pages" aria-hidden="true"></div>
-          <div class="book-3d" aria-label="غلاف كتاب القلمينا بين الماضي والحاضر">
-            <div class="book-frame">
-              <div class="book-ornament">إصدار توثيقي خاص</div>
-              <div>
-                <div class="book-cover-title">القلمينا</div>
-                <span class="book-cover-sub">بين الماضي والحاضر</span>
-                <div class="book-cover-divider"></div>
-              </div>
-              <div class="book-cover-author">
-                <span>تأليف</span>
-                أ. خالد عبدالمبدى ربيعي
-              </div>
-            </div>
+          <div class="book-3d">
+            <img
+              class="book-cover-img"
+              src="/cover.jpg"
+              alt="غلاف كتاب القلمينا بين الماضي والحاضر — أ. خالد عبدالمبدى ربيعي"
+              loading="eager"
+              decoding="async"
+            />
           </div>
         </div>
       </div>
