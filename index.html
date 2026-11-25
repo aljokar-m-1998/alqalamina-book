@@ -286,71 +286,6 @@
       transform: translateY(-2px);
     }
 
-    /* شريط تقدم التحميل الذكي */
-    .download-progress-card {
-      display: none;
-      background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 14px;
-      padding: 14px 18px;
-      margin-bottom: 22px;
-      box-shadow: var(--shadow-soft);
-      max-width: 490px;
-    }
-
-    .download-progress-card.active {
-      display: block;
-      animation: fadeIn 0.25s ease;
-    }
-
-    .progress-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-      gap: 10px;
-    }
-
-    .progress-status {
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .progress-cancel {
-      background: transparent;
-      border: none;
-      color: #C94A4A;
-      font-family: inherit;
-      font-size: 0.85rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 8px;
-      background: var(--accent-soft);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--accent), var(--primary));
-      border-radius: 999px;
-      transition: width 0.15s linear;
-    }
-
-    .progress-meta {
-      margin-top: 6px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
-    }
-
     /* شريط المواصفات */
     .meta-pills {
       display: flex;
@@ -675,7 +610,7 @@
     }
 
     .modal-header {
-      padding: 12px 18px;
+      padding: 10px 16px;
       background: #132C26;
       color: #FFFFFF;
       display: flex;
@@ -683,11 +618,13 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
+      border-bottom: 1px solid rgba(230, 199, 146, 0.22);
     }
 
     .modal-title {
       font-family: 'Amiri', serif;
-      font-size: 1.2rem;
+      font-size: 1.18rem;
+      color: #FFFDF8;
     }
 
     .modal-actions {
@@ -697,30 +634,73 @@
       flex-wrap: wrap;
     }
 
-    .viewer-switch {
-      background: rgba(255, 255, 255, 0.1);
+    .reader-zoom-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      padding: 3px;
+    }
+
+    .reader-btn {
+      background: rgba(255, 255, 255, 0.08);
       color: #F4EBDB;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      padding: 6px 12px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      min-width: 32px;
+      height: 32px;
+      padding: 0 10px;
       border-radius: 8px;
       font-family: inherit;
-      font-size: 0.82rem;
+      font-size: 0.84rem;
       font-weight: 700;
       cursor: pointer;
-    }
-
-    .viewer-switch:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .modal-link {
-      color: #E6C792;
-      font-size: 0.82rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
       text-decoration: none;
+      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+    }
+
+    .reader-zoom-group .reader-btn {
+      border-color: transparent;
+      background: transparent;
+      height: 28px;
+      min-width: 28px;
+      padding: 0 8px;
+    }
+
+    .reader-btn:hover:not(:disabled) {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(230, 199, 146, 0.45);
+    }
+
+    .reader-btn.active {
+      background: rgba(215, 173, 110, 0.24);
+      color: #E6C792;
+      border-color: rgba(230, 199, 146, 0.5);
+    }
+
+    .reader-btn:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .reader-btn-gold {
+      color: #E6C792;
+      border-color: rgba(230, 199, 146, 0.45);
+      background: rgba(184, 139, 74, 0.16);
+    }
+
+    .reader-zoom-label {
+      font-size: 0.8rem;
       font-weight: 700;
-      padding: 6px 12px;
-      border: 1px solid rgba(230, 199, 146, 0.45);
-      border-radius: 8px;
+      color: #E6C792;
+      min-width: 44px;
+      text-align: center;
+      user-select: none;
     }
 
     .modal-close {
@@ -734,26 +714,86 @@
       cursor: pointer;
       display: grid;
       place-items: center;
+      transition: background 0.18s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.24);
     }
 
     .modal-body {
       flex: 1;
+      min-height: 0;
       position: relative;
-      background: #1E2422;
+      background: #1B2321;
+      display: flex;
+      flex-direction: column;
     }
 
-    .viewer-loader {
+    .reader-stage {
+      flex: 1;
+      min-height: 0;
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+      padding: 16px;
+      text-align: center;
+      touch-action: pan-x pan-y;
+    }
+
+    .reader-canvas-wrap {
+      display: none;
+      margin: 0 auto;
+      transform-origin: top center;
+      transition: transform 0.08s ease-out;
+    }
+
+    .reader-canvas-wrap.ready {
+      display: inline-block;
+    }
+
+    #pdfCanvas {
+      display: block;
+      background: #FFFFFF;
+      border-radius: 6px;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+    }
+
+    .viewer-loader,
+    .viewer-error {
       position: absolute;
       inset: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
+      gap: 14px;
+      background: rgba(27, 35, 33, 0.84);
+      backdrop-filter: blur(3px);
       color: #E6C792;
-      font-size: 0.95rem;
-      z-index: 1;
-      pointer-events: none;
+      font-size: 0.96rem;
+      font-weight: 700;
+      padding: 24px;
+      text-align: center;
+      z-index: 4;
+    }
+
+    .viewer-loader.hidden,
+    .viewer-error.hidden {
+      display: none;
+    }
+
+    .viewer-error p {
+      color: #F3EFE8;
+      max-width: 380px;
+      font-weight: 500;
+      line-height: 1.7;
+    }
+
+    .error-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
     }
 
     .spinner {
@@ -765,12 +805,72 @@
       animation: spin 0.8s linear infinite;
     }
 
-    .modal-body iframe {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      height: 100%;
-      border: none;
+    .reader-footer {
+      padding: 10px 16px;
+      background: #132C26;
+      color: #F4EBDB;
+      border-top: 1px solid rgba(230, 199, 146, 0.22);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .reader-nav-btn {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: 1px solid rgba(230, 199, 146, 0.35);
+      padding: 7px 16px;
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .reader-nav-btn:hover:not(:disabled) {
+      background: rgba(215, 173, 110, 0.24);
+      border-color: #E6C792;
+    }
+
+    .reader-nav-btn:disabled {
+      opacity: 0.42;
+      cursor: not-allowed;
+    }
+
+    .reader-page-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: #F4EBDB;
+    }
+
+    .reader-page-info input {
+      width: 58px;
+      padding: 5px 6px;
+      border-radius: 8px;
+      border: 1px solid rgba(230, 199, 146, 0.45);
+      background: rgba(15, 20, 19, 0.65);
+      color: #FFFDF8;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-align: center;
+      -moz-appearance: textfield;
+    }
+
+    .reader-page-info input::-webkit-outer-spin-button,
+    .reader-page-info input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .reader-page-info input:focus {
+      outline: 2px solid #E6C792;
+      outline-offset: 1px;
     }
 
     /* شريط الإجراءات العائم للموبايل */
@@ -871,8 +971,7 @@
         justify-content: center;
       }
 
-      .description,
-      .download-progress-card {
+      .description {
         margin-inline: auto;
       }
 
@@ -895,6 +994,39 @@
 
       .nav-badge {
         display: none;
+      }
+
+      .modal-overlay {
+        padding: 0;
+      }
+
+      .modal-content {
+        height: 100vh;
+        height: 100dvh;
+        border-radius: 0;
+        border: none;
+      }
+
+      .modal-header {
+        padding: 8px 12px;
+        gap: 8px;
+      }
+
+      .modal-title {
+        font-size: 1.02rem;
+      }
+
+      .reader-stage {
+        padding: 10px;
+      }
+
+      .reader-footer {
+        padding: 8px 12px;
+      }
+
+      .reader-nav-btn {
+        padding: 7px 12px;
+        font-size: 0.85rem;
       }
     }
   </style>
@@ -950,14 +1082,14 @@
         </p>
 
         <div class="cta-group" id="heroCta">
-          <button id="downloadBtn" type="button" class="btn btn-primary">
+          <a id="downloadBtn" href="/api/book?download=1" download="القلمينا بين الماضي والحاضر - أ. خالد عبدالمبدى ربيع.pdf" class="btn btn-primary">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               <polyline points="7 10 12 15 17 10"></polyline>
               <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
             <span id="downloadBtnText">تحميل الكتاب (PDF)</span>
-          </button>
+          </a>
 
           <button id="readOnlineBtn" type="button" class="btn btn-secondary">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -966,21 +1098,6 @@
             </svg>
             قراءة الكتاب أونلاين
           </button>
-        </div>
-
-        <!-- شريط تقدم التحميل -->
-        <div id="progressCard" class="download-progress-card" aria-live="polite">
-          <div class="progress-top">
-            <span id="progressStatus" class="progress-status">جارٍ تجهيز الكتاب...</span>
-            <button id="cancelDownloadBtn" type="button" class="progress-cancel">إلغاء</button>
-          </div>
-          <div class="progress-track">
-            <div id="progressFill" class="progress-fill"></div>
-          </div>
-          <div class="progress-meta">
-            <span id="progressBytes">0 ميجابايت</span>
-            <span id="progressPercent">0%</span>
-          </div>
         </div>
 
         <div class="meta-pills">
@@ -1097,27 +1214,56 @@
 
   <!-- شريط عائم للموبايل -->
   <div id="mobileStickyBar" class="mobile-sticky-bar">
-    <button id="mobileDownloadBtn" type="button" class="btn btn-primary">تحميل PDF</button>
+    <a id="mobileDownloadBtn" href="/api/book?download=1" download="القلمينا بين الماضي والحاضر - أ. خالد عبدالمبدى ربيع.pdf" class="btn btn-primary">تحميل PDF</a>
     <button id="mobileReadBtn" type="button" class="btn btn-secondary">قراءة أونلاين</button>
   </div>
 
-  <!-- نافذة القراءة المدمجة -->
+  <!-- نافذة القراءة المدمجة (PDF.js) -->
   <div id="readerModal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modalBookTitle">
     <div class="modal-content">
       <div class="modal-header">
         <div id="modalBookTitle" class="modal-title">القلمينا بين الماضي والحاضر</div>
         <div class="modal-actions">
-          <button id="switchViewerBtn" type="button" class="viewer-switch">تبديل العارض</button>
-          <a id="directFallbackLink" href="#" target="_blank" rel="noopener noreferrer" class="modal-link">فتح مباشر</a>
+          <div class="reader-zoom-group" aria-label="التحكم في التكبير">
+            <button id="zoomOutBtn" type="button" class="reader-btn" aria-label="تصغير" title="تصغير">-</button>
+            <span id="zoomLabel" class="reader-zoom-label" aria-live="polite">100%</span>
+            <button id="zoomInBtn" type="button" class="reader-btn" aria-label="تكبير" title="تكبير">+</button>
+            <button id="fitWidthBtn" type="button" class="reader-btn active" title="ملاءمة العرض">ملاءمة العرض</button>
+          </div>
+          <a id="modalDownloadLink" href="/api/book?download=1" download="القلمينا بين الماضي والحاضر - أ. خالد عبدالمبدى ربيع.pdf" class="reader-btn reader-btn-gold">تحميل</a>
           <button id="closeModalBtn" type="button" class="modal-close" aria-label="إغلاق">&times;</button>
         </div>
       </div>
+
       <div class="modal-body">
+        <div id="readerStage" class="reader-stage">
+          <div id="canvasWrap" class="reader-canvas-wrap">
+            <canvas id="pdfCanvas" aria-label="صفحة الكتاب"></canvas>
+          </div>
+        </div>
+
         <div id="viewerLoader" class="viewer-loader">
           <div class="spinner"></div>
-          <span>جارٍ تحميل صفحات الكتاب...</span>
+          <span id="loaderText">جارٍ تحميل الصفحة...</span>
         </div>
-        <iframe id="pdfFrame" title="عارض كتاب القلمينا بين الماضي والحاضر"></iframe>
+
+        <div id="viewerError" class="viewer-error hidden" role="alert">
+          <p>تعذّر عرض صفحات الكتاب داخل المتصفح. يمكنك إعادة المحاولة أو فتح الملف مباشرة.</p>
+          <div class="error-actions">
+            <button id="retryLoadBtn" type="button" class="reader-btn reader-btn-gold">إعادة المحاولة</button>
+            <a id="directFallbackLink" href="#" target="_blank" rel="noopener noreferrer" class="reader-btn">فتح الملف مباشرة</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="reader-footer">
+        <button id="prevPageBtn" type="button" class="reader-nav-btn" disabled>السابق</button>
+        <div class="reader-page-info">
+          <span>صفحة</span>
+          <input id="pageInput" type="number" min="1" value="1" inputmode="numeric" aria-label="رقم الصفحة" />
+          <span>من <span id="pageCount">--</span></span>
+        </div>
+        <button id="nextPageBtn" type="button" class="reader-nav-btn" disabled>التالي</button>
       </div>
     </div>
   </div>
@@ -1125,23 +1271,19 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    // إعدادات الكتاب
-    const BOOK_URL = "https://huggingface.co/datasets/M-hv1/Titan-Library-Arabic/resolve/main/%D8%A7%D9%84%D9%82%D9%84%D9%85%D9%8A%D9%86%D8%A7%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D8%A7%D8%B6%D9%89%20%D9%88%D8%A7%D9%84%D8%AD%D8%A7%D8%B6%D8%B1%20%D8%A3-%20%D8%AE%D8%A7%D9%84%D8%AF%20%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%85%D8%A8%D8%AF%D9%89%20%D8%B1%D8%A8%D9%8A%D8%B9_261125_171043.pdf";
-    const CLEAN_FILENAME = "القلمينا بين الماضي والحاضر - أ. خالد عبدالمبدى ربيع.pdf";
+    // إعدادات الكتاب ومصدر البث
+    const BOOK_API_URL = "/api/book";
+    const BOOK_DOWNLOAD_URL = "/api/book?download=1";
+    const DIRECT_FALLBACK_URL = "https://huggingface.co/datasets/M-hv1/Titan-Library-Arabic/resolve/main/%D8%A7%D9%84%D9%82%D9%84%D9%85%D9%8A%D9%86%D8%A7%20%D8%A8%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D8%A7%D8%B6%D9%89%20%D9%88%D8%A7%D9%84%D8%AD%D8%A7%D8%B6%D8%B1%20%D8%A3-%20%D8%AE%D8%A7%D9%84%D8%AF%20%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D9%85%D8%A8%D8%AF%D9%89%20%D8%B1%D8%A8%D9%8A%D8%B9_261125_171043.pdf";
+    const PDFJS_CDN = "https://cdn.jsdelivr.net/npm/pdfjs-dist@4.10.38";
 
     // العناصر
     const downloadBtn = document.getElementById("downloadBtn");
-    const downloadBtnText = document.getElementById("downloadBtnText");
     const mobileDownloadBtn = document.getElementById("mobileDownloadBtn");
+    const modalDownloadLink = document.getElementById("modalDownloadLink");
     const readOnlineBtn = document.getElementById("readOnlineBtn");
     const mobileReadBtn = document.getElementById("mobileReadBtn");
     const bookCoverTrigger = document.getElementById("bookCoverTrigger");
-    const progressCard = document.getElementById("progressCard");
-    const progressStatus = document.getElementById("progressStatus");
-    const progressFill = document.getElementById("progressFill");
-    const progressBytes = document.getElementById("progressBytes");
-    const progressPercent = document.getElementById("progressPercent");
-    const cancelDownloadBtn = document.getElementById("cancelDownloadBtn");
     const fileSizeLabel = document.getElementById("fileSizeLabel");
     const toast = document.getElementById("toast");
 
@@ -1155,195 +1297,355 @@
     }
 
     // اكتشاف متصفح فيسبوك أو إنستجرام الداخلي
-    const isInAppBrowser = /FBAN|FBAV|FB_IAB|Instagram/i.test(navigator.userAgent);
+    const isInAppBrowser = /FBAN|FBAV|FB_IAB|Instagram|Messenger/i.test(navigator.userAgent);
     if (isInAppBrowser) {
       document.getElementById("inappBanner").classList.add("visible");
     }
 
     // قراءة حجم الملف تلقائياً للعرض
     (async function fetchFileSize() {
-      try {
-        const res = await fetch(BOOK_URL, { method: "HEAD" });
-        const bytes = Number(res.headers.get("content-length"));
-        if (bytes > 0) {
-          const mb = (bytes / (1024 * 1024)).toFixed(1);
-          fileSizeLabel.textContent = `ملف PDF (${mb} ميجابايت)`;
+      for (const url of [BOOK_API_URL, DIRECT_FALLBACK_URL]) {
+        try {
+          const res = await fetch(url, { method: "HEAD" });
+          const bytes = Number(res.headers.get("content-length"));
+          if (bytes > 0) {
+            const mb = (bytes / (1024 * 1024)).toFixed(1);
+            fileSizeLabel.textContent = `ملف PDF (${mb} ميجابايت)`;
+            return;
+          }
+        } catch {
+          // الانتقال للمصدر التالي عند الفشل
         }
-      } catch {
-        // يظل النص الافتراضي كما هو في حال منع الخادم طلب HEAD
       }
     })();
 
-    // محرك التحميل الذكي لحفظ الكتاب باسم عربي نظيف بدون حروف متلخبطة
-    let abortController = null;
-    let isDownloading = false;
-
-    async function startSmartDownload() {
-      if (isDownloading) return;
-
-      // متصفح فيسبوك الداخلي يمنع أحياناً تحميل ملفات Blob، لذا نستخدم التحميل المباشر فيه كبديل آمن
-      if (isInAppBrowser) {
-        showToast("جارٍ بدء التحميل المباشر...");
-        window.location.href = `${BOOK_URL}?download=true`;
-        return;
-      }
-
-      isDownloading = true;
-      abortController = new AbortController();
-
-      downloadBtn.disabled = true;
-      mobileDownloadBtn.disabled = true;
-      downloadBtnText.textContent = "جارٍ التحميل...";
-      progressCard.classList.add("active");
-      progressFill.style.width = "0%";
-      progressStatus.textContent = "جارٍ سحب ملف الكتاب...";
-      progressBytes.textContent = "جاري الاتصال...";
-      progressPercent.textContent = "";
-
-      try {
-        const response = await fetch(BOOK_URL, { signal: abortController.signal });
-        if (!response.ok) throw new Error("Network error");
-
-        const totalBytes = Number(response.headers.get("content-length")) || 0;
-        const reader = response.body ? response.body.getReader() : null;
-
-        let blob;
-        if (reader) {
-          const chunks = [];
-          let receivedBytes = 0;
-
-          while (true) {
-            const { done, value } = await reader.read();
-            if (done) break;
-            chunks.push(value);
-            receivedBytes += value.length;
-
-            const receivedMB = (receivedBytes / (1024 * 1024)).toFixed(2);
-            if (totalBytes > 0) {
-              const totalMB = (totalBytes / (1024 * 1024)).toFixed(2);
-              const pct = Math.min(100, Math.round((receivedBytes / totalBytes) * 100));
-              progressFill.style.width = `${pct}%`;
-              progressBytes.textContent = `${receivedMB} / ${totalMB} ميجابايت`;
-              progressPercent.textContent = `${pct}%`;
-            } else {
-              progressFill.style.width = "65%";
-              progressBytes.textContent = `تم تحميل ${receivedMB} ميجابايت`;
-            }
-          }
-          blob = new Blob(chunks, { type: "application/pdf" });
-        } else {
-          blob = await response.blob();
-        }
-
-        // إنشاء رابط محلي (نفس النطاق) لإجبار المتصفح على حفظ الملف بالاسم العربي الصحيح
-        const blobUrl = URL.createObjectURL(blob);
-        const tempLink = document.createElement("a");
-        tempLink.href = blobUrl;
-        tempLink.download = CLEAN_FILENAME;
-        document.body.appendChild(tempLink);
-        tempLink.click();
-        tempLink.remove();
-
-        progressFill.style.width = "100%";
-        progressStatus.textContent = "تم حفظ الكتاب بنجاح!";
-        progressPercent.textContent = "100%";
-        showToast("تم تحميل الكتاب باسمه الصحيح");
-
-        setTimeout(() => {
-          URL.revokeObjectURL(blobUrl);
-          progressCard.classList.remove("active");
-        }, 4000);
-
-      } catch (err) {
-        if (err.name === "AbortError") {
-          showToast("تم إلغاء التحميل");
-          progressCard.classList.remove("active");
-        } else {
-          // بديل احتياطي فوري لو حصلت مشكلة شبكة أو CORS
-          progressCard.classList.remove("active");
-          showToast("جارٍ التحويل للتحميل المباشر...");
-          window.location.href = `${BOOK_URL}?download=true`;
-        }
-      } finally {
-        isDownloading = false;
-        abortController = null;
-        downloadBtn.disabled = false;
-        mobileDownloadBtn.disabled = false;
-        downloadBtnText.textContent = "تحميل الكتاب (PDF)";
-      }
-    }
-
-    downloadBtn.addEventListener("click", startSmartDownload);
-    mobileDownloadBtn.addEventListener("click", startSmartDownload);
-    cancelDownloadBtn.addEventListener("click", () => {
-      if (abortController) abortController.abort();
+    // إشعار بدء التحميل المباشر من الخادم (بدون تحميل الملف داخل الذاكرة في المتصفح)
+    [downloadBtn, mobileDownloadBtn, modalDownloadLink].forEach((link) => {
+      link.addEventListener("click", () => {
+        showToast("جارٍ بدء تحميل الكتاب...");
+      });
     });
 
-    // نافذة القراءة المدمجة مع عارض مزدوج (PDF.js + Google Viewer)
+    // نافذة القراءة المدمجة عبر PDF.js مع تحميل الصفحات عند الطلب
     const readerModal = document.getElementById("readerModal");
     const closeModalBtn = document.getElementById("closeModalBtn");
-    const pdfFrame = document.getElementById("pdfFrame");
+    const readerStage = document.getElementById("readerStage");
+    const canvasWrap = document.getElementById("canvasWrap");
+    const pdfCanvas = document.getElementById("pdfCanvas");
     const viewerLoader = document.getElementById("viewerLoader");
-    const switchViewerBtn = document.getElementById("switchViewerBtn");
+    const loaderText = document.getElementById("loaderText");
+    const viewerError = document.getElementById("viewerError");
+    const retryLoadBtn = document.getElementById("retryLoadBtn");
     const directFallbackLink = document.getElementById("directFallbackLink");
+    const prevPageBtn = document.getElementById("prevPageBtn");
+    const nextPageBtn = document.getElementById("nextPageBtn");
+    const pageInput = document.getElementById("pageInput");
+    const pageCountEl = document.getElementById("pageCount");
+    const zoomInBtn = document.getElementById("zoomInBtn");
+    const zoomOutBtn = document.getElementById("zoomOutBtn");
+    const fitWidthBtn = document.getElementById("fitWidthBtn");
+    const zoomLabel = document.getElementById("zoomLabel");
 
-    directFallbackLink.href = BOOK_URL;
+    directFallbackLink.href = DIRECT_FALLBACK_URL;
 
-    const viewers = [
-      {
-        name: "عارض جوجل",
-        url: `https://docs.google.com/gview?embedded=true&url=${encodeURIComponent(BOOK_URL)}`
-      },
-      {
-        name: "عارض PDF السريع",
-        url: `https://mozilla.github.io/pdf.js/web/viewer.html?file=${encodeURIComponent(BOOK_URL)}`
-      }
-    ];
+    let pdfjsLib = null;
+    let pdfDoc = null;
+    let currentPage = 1;
+    let totalPages = 0;
+    let zoomMode = "fit";
+    let zoomMultiplier = 1;
+    let currentRenderTask = null;
+    let renderToken = 0;
+    let isLoadingDocument = false;
 
-    let currentViewerIndex = 0;
-    let viewerInitialized = false;
-
-    function loadViewer(index) {
-      currentViewerIndex = index;
-      viewerLoader.style.display = "flex";
-      pdfFrame.src = viewers[index].url;
-      const nextIndex = (index + 1) % viewers.length;
-      switchViewerBtn.textContent = `تجربة ${viewers[nextIndex].name}`;
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
     }
 
-    pdfFrame.addEventListener("load", () => {
-      viewerLoader.style.display = "none";
-    });
+    function setLoader(visible, message = "جارٍ تحميل الصفحة...") {
+      loaderText.textContent = message;
+      viewerLoader.classList.toggle("hidden", !visible);
+    }
+
+    function setError(visible) {
+      viewerError.classList.toggle("hidden", !visible);
+    }
+
+    function updateControls() {
+      pageInput.value = String(currentPage);
+      pageInput.max = String(totalPages || 1);
+      pageCountEl.textContent = totalPages ? String(totalPages) : "--";
+      prevPageBtn.disabled = !pdfDoc || currentPage <= 1;
+      nextPageBtn.disabled = !pdfDoc || currentPage >= totalPages;
+      zoomLabel.textContent = `${Math.round(zoomMultiplier * 100)}%`;
+      fitWidthBtn.classList.toggle("active", zoomMode === "fit");
+      zoomOutBtn.disabled = !pdfDoc || zoomMultiplier <= 0.5;
+      zoomInBtn.disabled = !pdfDoc || zoomMultiplier >= 3.0;
+    }
+
+    async function loadPdfDocument() {
+      if (pdfDoc || isLoadingDocument) return;
+      isLoadingDocument = true;
+      setError(false);
+      setLoader(true, "جارٍ تجهيز الكتاب...");
+
+      try {
+        if (!pdfjsLib) {
+          pdfjsLib = await import(`${PDFJS_CDN}/build/pdf.min.mjs`);
+          pdfjsLib.GlobalWorkerOptions.workerSrc = `${PDFJS_CDN}/build/pdf.worker.min.mjs`;
+        }
+
+        const loadingTask = pdfjsLib.getDocument({
+          url: BOOK_API_URL,
+          disableAutoFetch: true,
+          disableStream: false,
+          rangeChunkSize: 524288,
+          cMapUrl: `${PDFJS_CDN}/cmaps/`,
+          cMapPacked: true,
+          standardFontDataUrl: `${PDFJS_CDN}/standard_fonts/`,
+        });
+
+        pdfDoc = await loadingTask.promise;
+        totalPages = pdfDoc.numPages;
+        currentPage = clamp(currentPage, 1, totalPages);
+        updateControls();
+        await renderPage(currentPage, true);
+      } catch (err) {
+        console.error("Failed to load PDF document:", err);
+        pdfDoc = null;
+        setLoader(false);
+        setError(true);
+      } finally {
+        isLoadingDocument = false;
+      }
+    }
+
+    async function renderPage(pageNum, resetScroll = false) {
+      if (!pdfDoc) return;
+      const token = ++renderToken;
+
+      if (currentRenderTask) {
+        try {
+          currentRenderTask.cancel();
+        } catch {
+          // تجاهل أخطاء إلغاء المهمة السابقة
+        }
+        currentRenderTask = null;
+      }
+
+      setError(false);
+      setLoader(true, `جارٍ تحميل الصفحة ${pageNum}...`);
+      updateControls();
+
+      try {
+        const page = await pdfDoc.getPage(pageNum);
+        if (token !== renderToken) return;
+
+        const stagePadding = window.innerWidth <= 860 ? 20 : 32;
+        const availableWidth = Math.max(240, readerStage.clientWidth - stagePadding);
+        const baseViewport = page.getViewport({ scale: 1 });
+        const fitWidthScale = availableWidth / baseViewport.width;
+        const effectiveScale = fitWidthScale * zoomMultiplier;
+        const viewport = page.getViewport({ scale: effectiveScale });
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        pdfCanvas.width = Math.max(1, Math.floor(viewport.width * dpr));
+        pdfCanvas.height = Math.max(1, Math.floor(viewport.height * dpr));
+        pdfCanvas.style.width = `${Math.floor(viewport.width)}px`;
+        pdfCanvas.style.height = `${Math.floor(viewport.height)}px`;
+
+        const ctx = pdfCanvas.getContext("2d", { alpha: false });
+        const renderContext = {
+          canvasContext: ctx,
+          viewport,
+          transform: dpr !== 1 ? [dpr, 0, 0, dpr, 0, 0] : null,
+        };
+
+        const task = page.render(renderContext);
+        currentRenderTask = task;
+        await task.promise;
+
+        if (token !== renderToken) return;
+        currentRenderTask = null;
+        canvasWrap.classList.add("ready");
+        if (resetScroll) {
+          readerStage.scrollTop = 0;
+        }
+        setLoader(false);
+        updateControls();
+      } catch (err) {
+        if (err?.name === "RenderingCancelledException") {
+          return;
+        }
+        console.error("Failed to render PDF page:", err);
+        if (token === renderToken) {
+          currentRenderTask = null;
+          setLoader(false);
+          setError(true);
+        }
+      }
+    }
+
+    function goToPage(targetPage) {
+      if (!pdfDoc) return;
+      const next = clamp(Math.round(targetPage), 1, totalPages);
+      if (next === currentPage) {
+        pageInput.value = String(currentPage);
+        return;
+      }
+      currentPage = next;
+      renderPage(currentPage, true);
+    }
+
+    function setZoom(nextMultiplier, mode = "custom") {
+      zoomMode = mode;
+      zoomMultiplier = clamp(Math.round(nextMultiplier * 100) / 100, 0.5, 3.0);
+      updateControls();
+      if (pdfDoc) renderPage(currentPage, false);
+    }
 
     function openReader() {
-      if (!viewerInitialized) {
-        loadViewer(0);
-        viewerInitialized = true;
-      }
       readerModal.classList.add("active");
       document.body.style.overflow = "hidden";
+      if (!pdfDoc) {
+        loadPdfDocument();
+      } else {
+        renderPage(currentPage, false);
+      }
     }
 
     function closeReader() {
       readerModal.classList.remove("active");
       document.body.style.overflow = "";
+      if (currentRenderTask) {
+        try {
+          currentRenderTask.cancel();
+        } catch {
+          // تجاهل
+        }
+        currentRenderTask = null;
+      }
     }
 
     readOnlineBtn.addEventListener("click", openReader);
     mobileReadBtn.addEventListener("click", openReader);
     bookCoverTrigger.addEventListener("click", openReader);
     closeModalBtn.addEventListener("click", closeReader);
-
-    switchViewerBtn.addEventListener("click", () => {
-      loadViewer((currentViewerIndex + 1) % viewers.length);
+    retryLoadBtn.addEventListener("click", () => {
+      if (pdfDoc) {
+        renderPage(currentPage, false);
+      } else {
+        loadPdfDocument();
+      }
     });
+
+    prevPageBtn.addEventListener("click", () => goToPage(currentPage - 1));
+    nextPageBtn.addEventListener("click", () => goToPage(currentPage + 1));
+
+    pageInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        goToPage(Number(pageInput.value) || currentPage);
+        pageInput.blur();
+      }
+    });
+    pageInput.addEventListener("change", () => {
+      goToPage(Number(pageInput.value) || currentPage);
+    });
+
+    zoomInBtn.addEventListener("click", () => setZoom(zoomMultiplier + 0.25, "custom"));
+    zoomOutBtn.addEventListener("click", () => setZoom(zoomMultiplier - 0.25, "custom"));
+    fitWidthBtn.addEventListener("click", () => setZoom(1, "fit"));
 
     readerModal.addEventListener("click", (e) => {
       if (e.target === readerModal) closeReader();
     });
 
+    // اختصارات لوحة المفاتيح للحاسوب (مع احترام اتجاه القراءة العربي RTL)
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && readerModal.classList.contains("active")) closeReader();
+      if (!readerModal.classList.contains("active")) return;
+      if (e.key === "Escape") {
+        closeReader();
+        return;
+      }
+      if (document.activeElement === pageInput) return;
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        goToPage(currentPage + 1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        goToPage(currentPage - 1);
+      }
+    });
+
+    // دعم اللمس على الموبايل: السحب لتقليب الصفحات + التكبير بالقرص
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let pinchStartDist = 0;
+    let pinchStartMultiplier = 1;
+    let pinchLiveRatio = 1;
+    let isPinching = false;
+
+    function getTouchDistance(touches) {
+      const dx = touches[0].clientX - touches[1].clientX;
+      const dy = touches[0].clientY - touches[1].clientY;
+      return Math.hypot(dx, dy);
+    }
+
+    readerStage.addEventListener("touchstart", (e) => {
+      if (e.touches.length === 2) {
+        isPinching = true;
+        pinchStartDist = getTouchDistance(e.touches);
+        pinchStartMultiplier = zoomMultiplier;
+        pinchLiveRatio = 1;
+      } else if (e.touches.length === 1) {
+        isPinching = false;
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    readerStage.addEventListener("touchmove", (e) => {
+      if (isPinching && e.touches.length === 2 && pinchStartDist > 0) {
+        e.preventDefault();
+        const dist = getTouchDistance(e.touches);
+        const targetMultiplier = clamp(pinchStartMultiplier * (dist / pinchStartDist), 0.5, 3.0);
+        pinchLiveRatio = targetMultiplier / zoomMultiplier;
+        canvasWrap.style.transform = `scale(${pinchLiveRatio})`;
+      }
+    }, { passive: false });
+
+    readerStage.addEventListener("touchend", (e) => {
+      if (isPinching && e.touches.length < 2) {
+        isPinching = false;
+        canvasWrap.style.transform = "";
+        const nextMultiplier = clamp(zoomMultiplier * pinchLiveRatio, 0.5, 3.0);
+        pinchLiveRatio = 1;
+        if (Math.abs(nextMultiplier - zoomMultiplier) > 0.04) {
+          setZoom(nextMultiplier, "custom");
+        }
+        return;
+      }
+
+      if (!isPinching && e.changedTouches.length === 1 && zoomMultiplier <= 1.05 && readerStage.scrollWidth <= readerStage.clientWidth + 4) {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.abs(dx) > 55 && Math.abs(dx) > Math.abs(dy) * 1.4) {
+          if (dx > 0) {
+            goToPage(currentPage + 1);
+          } else {
+            goToPage(currentPage - 1);
+          }
+        }
+      }
+    }, { passive: true });
+
+    // إعادة ضبط العرض تلقائياً عند تدوير الشاشة أو تغيير حجم النافذة
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      if (!readerModal.classList.contains("active") || !pdfDoc || zoomMode !== "fit") return;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => renderPage(currentPage, false), 150);
     });
 
     // الوضع الليلي والنهاري
